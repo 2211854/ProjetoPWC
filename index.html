@@ -22,17 +22,19 @@
  	<!-- Bootstrap barra de navegação -->
  	 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <a class="navbar-brand" href="./index.html">Projeto Coin Gecko</a>
+
+	  <ul class="navbar-nav mr-auto">
+	    <li class="nav-item">
+	      <a class="nav-link" href="#">Favoritos⭐</a>
+	    </li>
+	  </ul>
+
 	  <!-- Barra de procura -->
 	  <form class="form-inline" onclick="return false;" action="/">
 		<input class="form-control mr-sm-2" type="text" placeholder="Procurar">
 	    <button class="btn btn-primary" type="submit">Procurar</button>
 	  </form>
 
-	  <ul class="navbar-nav">
-	    <li class="nav-item">
-	      <a class="nav-link" href="#">Favoritos⭐</a>
-	    </li>
-	  </ul>
  	 </nav>
 
  	 <!-- Conteúdo da Página -->
@@ -51,5 +53,22 @@
  	 		
  	 	</table>
  	 </div>
+
+	<div class="container">
+	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+	    <div class="col-md-4 d-flex align-items-center">
+	      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+	        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+	      </a>
+	      <span class="text-muted">© 2022 Projeto CoinGecko</span>
+	    </div>
+
+	    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+	      <li class="ms-3"><a class="text-muted" href="#"></a>1</li>
+	      <li class="ms-3"><a class="text-muted" href="#"></a>2</li>
+	      <li class="ms-3"><a class="text-muted" href="#"></a>3</li>
+	    </ul>
+	  </footer>
+	</div>
 </body>
 </html>
