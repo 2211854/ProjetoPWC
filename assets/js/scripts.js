@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 $(document).ready( function(){
 
 	//criacao do clone dos campos para os dados das moedas
@@ -150,4 +148,3 @@ $(document).ready( function(){
 
 
 });
->>>>>>> Stashed changes

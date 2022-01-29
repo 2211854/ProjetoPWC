@@ -16,16 +16,10 @@
 	<!-- importação do ficheiro styles.css -->
 	<link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
 	
-<<<<<<< Updated upstream
-	<!-- importação do ficheiro scripts.js -->
-	<script type="text/javascript" src="./assets/js/scripts.js"></script>
 
-	<title>Coin Gecko</title>
-=======
 	<!-- titulo do separador -->
 	<title id="titulo">Projeto Coin Gecko | pagina-incial</title>
 
->>>>>>> Stashed changes
 </head>
 <body class="bg-light">
  	<!-- Bootstrap barra de navegação -->
@@ -37,66 +31,41 @@
 
 	  <ul class="navbar-nav mr-auto">
 	    <li class="nav-item">
-	      <a class="nav-link active" href="#">
+	      <a class="nav-link active" href="#pagina-inicial">
 	      	Página Inicial
 	      </a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="#">Favoritos⭐</a>
+	      <a class="nav-link" href="#favoritos">Favoritos</a>
 	    </li>
 	  </ul>
 
-	  <!-- Barra de procura -->
-	  <form class="form-inline" onclick="return false;" action="/">
-		<input class="form-control mr-sm-2" type="text" placeholder="Procurar">
-	    <button class="btn btn-primary" type="submit">Procurar</button>
-	  </form>
+
 	 </nav>
 
 
 	 <!-- Conteudo inicial -->
  	 <!-- Dados das Moedas -->
-<<<<<<< Updated upstream
  	 <div class="container">
      
 	 	<h1>Moedas</h1>
  	 	<table class="table table-hover">
- 	 		<tr>
- 	 			<th>#</th>
- 	 			<th>Moeda</th>
- 	 			<th>Preço</th>
- 	 			<th>1h</th>
- 	 			<th>24h</th>
- 	 			<th>7d</th>
- 	 			<th>24h volume</th>
- 	 			<th>Mkt Cap</th>
- 	 			<th>Ultimos 7 dias</th>
-=======
- 	 <div class="container" id="dados_moedas">
-	 	<div class="row">
-	 		<div class="col">
-	 			<h1>Moedas</h1>
-	 		</div>
-	 		<div class="col-0">
-		 		 <!-- Barra de procura -->
-	 			<form class="form-inline" onclick="return false;" action="/">
-		  			<input id="barra_procura" class="form-control" type="text" placeholder="Procurar">
- 					<!-- <button class="btn btn-primary" type="submit">Procurar</button>-->
-		 		 </form>
-	 		</div>
-		 
-	 	</div>
- 	 	<table class="table table-hover" onload="receberDadosAPI(); recriarDadosTabela(dados_atuais_tabela);">
  	 		<tr>
  	 			<th id='header_rank'><a href="#" onclick="return false;" class="text-dark text-decoration-none"># <span id="ordem">▼</span></a></th>
  	 			<th >Logo</th>
  	 			<th id='header_nome'>Nome</th>
  	 			<th id='header_preco'>Preço (€)</th>
  	 			<th id='header_24h'>24h</th>
- 	 			<th id='header_7d'>7d</th>
->>>>>>> Stashed changes
+ 	 			<th id='header_7d'>7d</th
  	 		</tr>
- 	 		
+ 		    <tr class = "dadosMoeda">
+            	<td class ="market_cap_rank"></td>
+            	<td class ="image"><img class="rounded-circle" id="logo_moeda" src="assets/img/logo_preto_sem_fundo.png"></td>
+            	<td class ="name"></td>
+            	<td class ="current_price"></td>
+            	<td class ="price_change_percentage_24h_in_currency"></td>
+            	<td class ="price_change_percentage_7d_in_currency"></td>
+           </tr>
  	 	</table>
  	 </div>
 
@@ -106,15 +75,19 @@
 	      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
 	        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
 	      </a>
-	      <span class="text-muted">© 2022 Projeto CoinGecko</span>
+	      <span class="text-muted">© 2022 Projeto CoinGecko - <a href="https://www.ipleiria.pt" class="text-muted"> IPLeiria <a/></span>
 	    </div>
 
 	    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-	      <li class="ms-3"><a class="text-muted" href="#"></a>1</li>
-	      <li class="ms-3"><a class="text-muted" href="#"></a>2</li>
-	      <li class="ms-3"><a class="text-muted" href="#"></a>3</li>
+	      <li class="ms-3">Gilberto Carvalho (2211878)</li>
+	      <li class="ms-3">José Duarte (2211853)</li><br>
+	      <li class="ms-3">Márcio Valério (2211854)</li>
 	    </ul>
 	  </footer>
 	</div>
+
+	<!-- importação do ficheiro scripts.js -->
+	<script type="text/javascript" src="./assets/js/scripts.js"></script>
+
 </body>
 </html>
