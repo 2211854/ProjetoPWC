@@ -65,7 +65,12 @@ $(document).ready( function(){
 			url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d"
 		}).done(function(res){
 			if(dados_atuais_tabela.length == 0){ recriarDadosTabela(res)};
+<<<<<<< Updated upstream
 			dados_atuais_tabela = res;
+=======
+			dados_atuais_tabela = duplicarArray(res);
+
+>>>>>>> Stashed changes
 		})
 	}
 
@@ -73,6 +78,12 @@ $(document).ready( function(){
 
 		var ordem_atual = $("#ordem").html();
 		console.log(ordem_atual);
+<<<<<<< Updated upstream
+=======
+
+		var dados = duplicarArray(dados_atuais_tabela);
+
+>>>>>>> Stashed changes
 		var dados_auxiliar = [];
 
 		var filtro = categoria+"_";
@@ -148,3 +159,12 @@ $(document).ready( function(){
 
 
 });
+
+
+function duplicarArray(arrayOriginal){
+	const duplicada = [];
+	for (const i of arrayOriginal) {
+	  duplicada.push(i)
+	}
+	return duplicada;
+}
