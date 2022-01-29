@@ -65,8 +65,6 @@ $(document).ready( function(){
 			url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d"
 		}).done(function(res){
 			if(dados_atuais_tabela.length == 0){ recriarDadosTabela(res)};
-
-			dados_atuais_tabela = res;
 			dados_atuais_tabela = duplicarArray(res);
 		})
 	}
@@ -90,7 +88,6 @@ $(document).ready( function(){
 		}
 		console.log(filtro);
 		
-
 		if ( filtro == 'rank_asc') {
 			dados_auxiliar = dados;
 			$("#ordem").html("▼");
@@ -122,8 +119,19 @@ $(document).ready( function(){
 	});
 	
 	$("#header_rank").on('click', function (){
+		var texto = $(this).text();
+		if(texto.indexOf("▼") && texto.indexOf("▲")){
+			const ordem = $("#ordem").clone();
+			$("#ordem").remove();
+			ordem.html("▼");
+			$("#header_rank a").append(ordem);
+		}
+
+		console.log($(this).text());
+		//if ($(this.html() != )) {}
 		organizarDados('rank');
 	});
+
 
 
 	$(".nav-link").on('click', function(e){ 
@@ -158,8 +166,8 @@ function duplicarArray(arrayOriginal){
 	/*criação função Auxiliar para duplicar arrays
 	array_duplicada = duplicarArray(arrayOriginal)
 	Esta função retorna a array duplicada e faz com que possa ser utilizada sem problemas dos endereços de memória.
-	
 	*/
+
 	const duplicada = [];
 	for (const i of arrayOriginal) {
 	  duplicada.push(i)
