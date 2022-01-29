@@ -1,4 +1,31 @@
+<<<<<<< Updated upstream
 .img-menu{
 	height: 5%;
 	width: 5%;
+=======
+/* adição de um estilo ao css já existente do bootstrap */
+.active {
+	background-color: gray;
+}
+
+.navbar {
+	z-index: 99;
+}
+
+/* colocar mais espaço em volta do container  */
+#dados_moedas{
+	margin-top: 50px;
+}
+
+#barra_procura{
+	margin-right: 0px;
+}
+
+.list-group-item{
+	z-index: 99;	
+}
+
+#logo_moeda{
+	height: 20px;
+>>>>>>> Stashed changes
 }
