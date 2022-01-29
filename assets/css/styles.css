@@ -3,6 +3,10 @@
 	background-color: gray;
 }
 
+.navbar {
+	z-index: 99;
+}
+
 /* colocar mais espaço em volta do container  */
 #dados_moedas{
 	margin-top: 50px;
@@ -10,10 +14,6 @@
 
 #barra_procura{
 	margin-right: 0px;
-}
-
-.list-group-item{
-	z-index: 99;	
 }
 
 #logo_moeda{
