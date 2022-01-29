@@ -1,7 +1,7 @@
 $(document).ready( function(){
 
 	//criacao do clone dos campos para os dados das moedas
-	var estrutura_dados_moeda = $('.dadosMoeda').clone();
+	const estrutura_dados_moeda = $('.dadosMoeda').clone();
 	//variavel dos dados atuais da 
 	var dados_atuais_tabela = [];
 
@@ -40,7 +40,7 @@ $(document).ready( function(){
 			var estrutura = estrutura_dados_moeda.clone()
 
 			estrutura.attr('id',result.id)
-		    // Alterar no clone
+
 		    if(pagina_atual == 'favoritos')
 		    {
 		    	//faz algo	
@@ -65,14 +65,24 @@ $(document).ready( function(){
 			url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d"
 		}).done(function(res){
 			if(dados_atuais_tabela.length == 0){ recriarDadosTabela(res)};
-			dados_atuais_tabela = res;
+			dados_atuais_tabela = [];
+
+			for (const i of res) {
+		 	 dados_atuais_tabela.push(i)
+			}
 		})
 	}
 
 	function organizarDados(categoria){
-
 		var ordem_atual = $("#ordem").html();
 		console.log(ordem_atual);
+
+		const dados = [];
+
+		for (const i of dados_atuais_tabela) {
+		  dados.push(i)
+		}
+
 		var dados_auxiliar = [];
 
 		var filtro = categoria+"_";
@@ -88,14 +98,14 @@ $(document).ready( function(){
 		
 
 		if ( filtro == 'rank_asc') {
-			dados_auxiliar = dados_atuais_tabela;
+			dados_auxiliar = dados;
 			$("#ordem").html("▼");
 			
 		}
 		else if (filtro == 'rank_desc')
 		{
 			$("#ordem").html("▲");
-			dados_auxiliar = dados_atuais_tabela;
+			dados_auxiliar = dados;
 			dados_auxiliar.reverse();
 
 
