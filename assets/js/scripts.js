@@ -56,6 +56,35 @@ $(document).ready( function(){
 		})
 	}
 
+	function pesquisaDadosTabela(dados,texto)
+	{
+		texto = texto.toUpperCase();
+		var nome = "";
+		$('.dadosMoeda').remove();
+		$.each(dados, function(index, result){
+			var estrutura = estrutura_dados_moeda.clone()
+
+			estrutura.attr('id',result.id)
+
+		    if(pagina_atual == 'favoritos')
+		    {
+		    	//faz algo	
+		    }
+		    $('.market_cap_rank', estrutura).html(result.market_cap_rank)
+		    $('#logo_moeda', estrutura).attr('src', result.image)
+		    $('.name', estrutura).html(result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    $('.current_price', estrutura).html(result.current_price+' €')
+		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3))
+		    $('.price_change_percentage_7d_in_currency', estrutura).html(result.price_change_percentage_7d_in_currency.toFixed(3))
+		    // Adicionar o clone à tabela original
+		    nome = result.name.toUpperCase();
+		    if ( nome.includes(texto))
+		    {
+		    	$('.table').append(estrutura)
+		    }
+		})
+	}
+
 
 	function receberDadosAPI(){
 
@@ -113,10 +142,8 @@ $(document).ready( function(){
 	$("#barra_procura").on('focusin', function(e){
 
 		$(this).on('keyup', function(){
-			/*for (var i = Things.length - 1; i >= 0; i--) {
-				Things[i]
-			}*/
 			console.log($(this).val());
+			pesquisaDadosTabela(dados_atuais_tabela,$(this).val())
 
 		});
 	});
