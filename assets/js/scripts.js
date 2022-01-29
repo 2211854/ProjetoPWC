@@ -155,6 +155,11 @@ $(document).ready( function(){
 
 
 function duplicarArray(arrayOriginal){
+	/*criação função Auxiliar para duplicar arrays
+	array_duplicada = duplicarArray(arrayOriginal)
+	Esta função retorna a array duplicada e faz com que possa ser utilizada sem problemas dos endereços de memória.
+	
+	*/
 	const duplicada = [];
 	for (const i of arrayOriginal) {
 	  duplicada.push(i)
