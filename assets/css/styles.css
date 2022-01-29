@@ -19,3 +19,11 @@
 #logo_moeda{
 	height: 20px;
 }
+
+#fundo_preto{
+	background-color: black;
+}
+
+#detalhesMoeda{
+	z-index: 99;
+}
