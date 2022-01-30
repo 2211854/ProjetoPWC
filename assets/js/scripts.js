@@ -86,8 +86,8 @@ $(document).ready( function(){
 		    	$('.name', estrutura).html("<img class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
 		    }
 		    $('.current_price', estrutura).html(result.current_price+' €')
-		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3))
-		    $('.price_change_percentage_7d_in_currency', estrutura).html(result.price_change_percentage_7d_in_currency.toFixed(3))
+		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3)+" %")
+		    $('.price_change_percentage_7d_in_currency', estrutura).html(result.price_change_percentage_7d_in_currency.toFixed(3)+" %")
 		    if(pagina_atual == 'favoritos' && dados_favoritos.includes("favorito_"+result.id))
 		    {
 		    	$('.table').append(estrutura)
