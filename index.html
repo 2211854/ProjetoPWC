@@ -18,7 +18,7 @@
 	
 
 	<!-- titulo do separador -->
-	<title id="titulo">Projeto Coin Gecko | pagina-incial</title>
+	<title id="titulo">Projeto Coin Gecko | pagina-inicial</title>
 
 </head>
 <body class="bg-light">
@@ -64,10 +64,10 @@
  	 		<tr>
  	 			<th id='header_rank'><a href="#" onclick="return false;" class="text-dark text-decoration-none"># <span id="ordem">▼</span></a></th>
  	 			<th >Logo</th>
- 	 			<th id='header_nome'><a href="#" onclick="return false;" class="text-dark text-decoration-none">Nome </a></th>
- 	 			<th id='header_preco'><a href="#" onclick="return false;" class="text-dark text-decoration-none">Preço (€) </a></th>
- 	 			<th id='header_24h'><a href="#" onclick="return false;" class="text-dark text-decoration-none">24h </a></th>
- 	 			<th id='header_7d'><a href="#" onclick="return false;" class="text-dark text-decoration-none">7d </a></th>
+ 	 			<th id='header_nome'>Nome</th>
+ 	 			<th id='header_preco'>Preço (€)</th>
+ 	 			<th id='header_24h'>24h</th>
+ 	 			<th id='header_7d'>7d</th>
  	 		</tr>
  		    <tr class = "dadosMoeda">
             	<td class ="market_cap_rank"></td>
@@ -79,6 +79,7 @@
            </tr>
  	 	</table>
  	 </div>
+
 	<div class="container">
 	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 	    <div class="col-md-4 d-flex align-items-center">
@@ -88,16 +89,51 @@
 	      <span class="text-muted">© 2022 Projeto CoinGecko - <a href="https://www.ipleiria.pt" class="text-muted"> IPLeiria <a/></span>
 	    </div>
 
-	    <ul class="rows">
-	      <li class="row">Gilberto Carvalho (2211878)</li>
-	      <li class="row">José Duarte (2211853)</li>
-	      <li class="row">Márcio Valério (2211854)</li>
+	    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+	      <li class="ms-3">Gilberto Carvalho (2211878)</li>
+	      <li class="ms-3">José Duarte (2211853)</li><br>
+	      <li class="ms-3">Márcio Valério (2211854)</li>
 	    </ul>
 	  </footer>
-	</div>	<!-- importação do ficheiro scripts.js -->
+	</div>
+
+	<div class="popup-details" id="popupid">
+		<div class="overlay-details"></div>
+		<div class="content-details">
+			<img class="rounded-circle" id="logo_moeda" src="assets/img/logo_preto_sem_fundo.png">
+			<h1>Detalhes da Moeda:</h1>
+			<table class="table-details">
+  				<tr>
+  				  <th id='header_capital'>Capitalização do mercado</th>
+   			      <td class ="market_capital"></td>
+ 			   </tr>
+               <tr>
+                  <th id='header_negocio'>Volume de negociação(24h)</th>
+                  <td class =trading_volume_24h></td>
+               </tr>
+               <tr>
+                 <th id='header_avaliacao'>Avaliação totalmente diluída</th>
+                 <td class ="fully_diluted_valuation"></td>
+              </tr>
+              <tr>
+                 <th id='header_circulante'>Fornecimento circulante</th>
+                 <td class ="circulating_supply"></td>
+              </tr>
+              <tr>
+                 <th id='header_total'>Fornecimento total</th>
+                 <td class ="total_supply"></td>
+              </tr>
+              <tr>
+                 <th id='header_maximo'>Fornecimento máximo</th>
+                 <td class ="maximum_supply"></td>
+              </tr>
+           </table>
+		</div>
+	</div>
+	
+	<!-- importação do ficheiro scripts.js -->
 	<script type="text/javascript" src="./assets/js/scripts.js"></script>
 
-
-
+	
 </body>
 </html>
