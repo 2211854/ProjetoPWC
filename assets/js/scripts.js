@@ -348,7 +348,12 @@ $(document).ready( function(){
 $("body").on('click','img', function(){
 	    if($(this).attr('id').includes('favorito_')){
 	    	if (dados_favoritos.includes($(this).attr('id'))){
-	    		dados_favoritos.splice(dados_favoritos.indexOf($(this).attr('id')),dados_favoritos.indexOf($(this).attr('id')));
+	    		console.log(dados_favoritos.indexOf($(this).attr('id')));
+	    		if(dados_favoritos.indexOf($(this).attr('id'))== 0){
+	    			dados_favoritos.shift();
+	    		}else{
+	    			dados_favoritos.splice(dados_favoritos.indexOf($(this).attr('id')),dados_favoritos.indexOf($(this).attr('id')));
+	    		}
 	    		$(this).attr('src', 'assets/img/estrela_nao_favorito.png');
 	    		localStorage.setItem("dados_favoritos", JSON.stringify(dados_favoritos));
 	    	}else{
