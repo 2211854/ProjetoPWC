@@ -26,4 +26,8 @@
 
 #detalhesMoeda{
 	z-index: 99;
+}  
+
+.favorito{
+	height: 17px;
 }

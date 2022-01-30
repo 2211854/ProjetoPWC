@@ -1,10 +1,9 @@
-
 function duplicarArray(arrayOriginal){
 	/*criação função Auxiliar para duplicar arrays
 	array_duplicada = duplicarArray(arrayOriginal)
 	Esta função retorna a array duplicada e faz com que possa ser utilizada sem problemas dos endereços de memória.
+	
 	*/
-
 	const duplicada = [];
 	for (const i of arrayOriginal) {
 	  duplicada.push(i)
@@ -20,8 +19,11 @@ $(document).ready( function(){
 	//variavel com os dados originais da tabela
 	var dados_originais_tabela = [];
 
-	//variavel dos dados atuais da tabela
+	var dados_favoritos = JSON.parse(localStorage.getItem("dados_favoritos") || "[]");
+
 	var dados_atuais_tabela = [];
+
+
 
 	var pagina_atual = 'pagina-incial';
 	
@@ -31,7 +33,8 @@ $(document).ready( function(){
 	let temporizador = setInterval(function(){
 		receberDadosAPI();
 		atualizarDadosTabela(dados_originais_tabela);
-	}, 7000);
+		dados_favoritos = JSON.parse(localStorage.getItem("dados_favoritos") || "[]");
+	}, 15000);
 
 
 	//fazer com que ao carregar a página dar load nos dados
@@ -44,7 +47,12 @@ $(document).ready( function(){
 		    //atualização dos dados na tabela atual
 		    $('.market_cap_rank', $('#'+result.id)).html(result.market_cap_rank)
 		    $('#logo_moeda', $('#'+result.id)).attr('src', result.image)
-		    $('.name', $('#'+result.id)).html(result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    if (dados_favoritos.includes("favorito_"+result.id)){
+		    	$('.name', $('#'+result.id)).html("<img class='favorito'  id='favorito_"+result.id + "' src='assets/img/estrela_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
+		    else{
+		    	$('.name', $('#'+result.id)).html("<img class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
 		    $('.current_price', $('#'+result.id)).html(result.current_price+' €')
 		    $('.price_change_percentage_24h_in_currency', $('#'+result.id)).html(result.price_change_percentage_24h_in_currency.toFixed(3)+" %")
 		    $('.price_change_percentage_7d_in_currency', $('#'+result.id)).html(result.price_change_percentage_7d_in_currency.toFixed(3)+" %")
@@ -68,19 +76,64 @@ $(document).ready( function(){
 
 			estrutura.attr('id',result.id)
 
-		    if(pagina_atual == 'favoritos')
-		    {
-		    	//faz algo	
-		    }
-		    $('.market_cap_rank', estrutura).html(result.market_cap_rank)
+		    
+	    	$('.market_cap_rank', estrutura).html(result.market_cap_rank)
 		    $('#logo_moeda', estrutura).attr('src', result.image)
-		    $('.name', estrutura).html(result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    if (dados_favoritos.includes("favorito_"+result.id)){
+		    	$('.name', estrutura).html("<img class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
+		    else{
+		    	$('.name', estrutura).html("<img class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
+		    $('.current_price', estrutura).html(result.current_price+' €')
+		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3))
+		    $('.price_change_percentage_7d_in_currency', estrutura).html(result.price_change_percentage_7d_in_currency.toFixed(3))
+		    if(pagina_atual == 'favoritos' && dados_favoritos.includes("favorito_"+result.id))
+		    {
+		    	$('.table').append(estrutura)
+		    }
+		    else if(pagina_atual == "pagina-incial"){
+			    // Adicionar o clone à tabela original
+			    $('.table').append(estrutura)
+		    }
+		    
+		})
+	}
+
+	function pesquisaDadosTabela(dados,texto)
+	{
+		texto = texto.toUpperCase();
+		var nome = "";
+		$('.dadosMoeda').remove();
+		$.each(dados, function(index, result){
+			var estrutura = estrutura_dados_moeda.clone()
+
+			estrutura.attr('id',result.id)
+	    	$('.market_cap_rank', estrutura).html(result.market_cap_rank)
+		    $('#logo_moeda', estrutura).attr('src', result.image)
+		    if (dados_favoritos.includes("favorito_"+result.id)){
+		    	$('.name', estrutura).html("<img id='favorito_"+result.id + "' src='assets/img/estrela_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
+		    else{
+		    	$('.name', estrutura).html("<img id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    }
 		    $('.current_price', estrutura).html(result.current_price+' €')
 		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3)+" %")
 		    $('.price_change_percentage_7d_in_currency', estrutura).html(result.price_change_percentage_7d_in_currency.toFixed(3)+" %")
 		    // Adicionar o clone à tabela original
-		    $('.table').append(estrutura)
-		})
+		    nome = result.name.toUpperCase();
+		    if (nome.includes(texto)){
+		    	if(pagina_atual == 'favoritos' && dados_favoritos.includes("favorito_"+result.id))
+			    {
+			    	$('.table').append(estrutura);	
+			    }
+			    else if (pagina_atual == "pagina-incial"){
+				    // Adicionar o clone à tabela original
+				    $('.table').append(estrutura);
+			    }
+		    }
+		    
+		});
 	}
 
 
@@ -206,10 +259,8 @@ $(document).ready( function(){
 	$("#barra_procura").on('focusin', function(e){
 
 		$(this).on('keyup', function(){
-			/*for (var i = Things.length - 1; i >= 0; i--) {
-				Things[i]
-			}*/
 			console.log($(this).val());
+			pesquisaDadosTabela(dados_atuais_tabela,$(this).val())
 
 		});
 	});
@@ -292,6 +343,36 @@ $(document).ready( function(){
 
 		$('#dados_moedas').hide();
 		$('#dados_moedas').fadeIn(1000);
+	});
+
+$("body").on('click','img', function(){
+	    if($(this).attr('id').includes('favorito_')){
+	    	if (dados_favoritos.includes($(this).attr('id'))){
+	    		dados_favoritos.splice(dados_favoritos.indexOf($(this).attr('id'),1));
+	    		$(this).attr('src', 'assets/img/estrela_nao_favorito.png');
+	    		localStorage.setItem("dados_favoritos", JSON.stringify(dados_favoritos));
+	    	}else{
+	    		dados_favoritos.push($(this).attr('id'));
+	    		$(this).attr('src', 'assets/img/estrela_favorito.png');
+	    		localStorage.setItem("dados_favoritos", JSON.stringify(dados_favoritos));
+	    	}
+    	}
+	});
+
+	$("body").on('mouseout','img', function(){
+	    if($(this).attr('id').includes('favorito_')){
+	    	if (dados_favoritos.includes($(this).attr('id'))){
+	    		$(this).attr('src', 'assets/img/estrela_favorito.png');
+	    	}else{
+	    		$(this).attr('src', 'assets/img/estrela_nao_favorito.png');
+    		}
+    	}	
+	});
+
+	$("body").on('mouseover','img', function(){
+		if($(this).attr('id').includes('favorito_')){
+	    	$(this).attr('src', 'assets/img/estrela_hover.png');
+	    }
 	});
 
 });

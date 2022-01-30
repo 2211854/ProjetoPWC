@@ -46,9 +46,20 @@
 
 	 <!-- Conteudo inicial -->
  	 <!-- Dados das Moedas -->
- 	 <div class="container">
-     
-	 	<h1>Moedas</h1>
+	  <div class="container" id="dados_moedas">
+	 	<div class="row">
+	 		<div class="col">
+	 			<h1>Moedas</h1>
+	 		</div>
+	 		<div class="col-0">
+		 		 <!-- Barra de procura -->
+	 			<form class="form-inline" onclick="return false;" action="/">
+		  			<input id="barra_procura" class="form-control" type="text" placeholder="Procurar">
+		 		 </form>
+	 		</div>
+		 
+	 	</div>
+
  	 	<table class="table table-hover">
  	 		<tr>
  	 			<th id='header_rank'><a href="#" onclick="return false;" class="text-dark text-decoration-none"># <span id="ordem">▼</span></a></th>
