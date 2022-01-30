@@ -348,7 +348,6 @@ $(document).ready( function(){
 $("body").on('click','img', function(){
 	    if($(this).attr('id').includes('favorito_')){
 	    	if (dados_favoritos.includes($(this).attr('id'))){
-	    		console.log(dados_favoritos.indexOf($(this).attr('id')));
 	    		if(dados_favoritos.indexOf($(this).attr('id'))== 0){
 	    			dados_favoritos.shift();
 	    		}else{
