@@ -112,10 +112,10 @@ $(document).ready( function(){
 	    	$('.market_cap_rank', estrutura).html(result.market_cap_rank)
 		    $('#logo_moeda', estrutura).attr('src', result.image)
 		    if (dados_favoritos.includes("favorito_"+result.id)){
-		    	$('.name', estrutura).html("<img id='favorito_"+result.id + "' src='assets/img/estrela_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    	$('.name', estrutura).html("<img  class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
 		    }
 		    else{
-		    	$('.name', estrutura).html("<img id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
+		    	$('.name', estrutura).html("<img  class='favorito' id='favorito_"+result.id + "' src='assets/img/estrela_nao_favorito.png' >  " + result.name + "  <span class='text-muted'>" + result.symbol+"</span>")
 		    }
 		    $('.current_price', estrutura).html(result.current_price+' €')
 		    $('.price_change_percentage_24h_in_currency', estrutura).html(result.price_change_percentage_24h_in_currency.toFixed(3)+" %")
