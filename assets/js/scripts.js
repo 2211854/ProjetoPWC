@@ -71,6 +71,7 @@ $(document).ready( function(){
 		}else{
 			$("#botaoUSD").removeClass("active");
 		}
+		detalhes(detalhado);
 
 	},100)
 
@@ -420,10 +421,12 @@ $(document).ready( function(){
 
 	$("body").on('click','img', function(){
 	    if($(this).attr('id').includes('favorito_')){
-	    	var coin = $(this).attr('id').substring(8,$(this).attr('id').length);
+	    	var coin = $(this).attr('id').substring(9,$(this).attr('id').length);
+
 	    	console.log(coin);
+	    	console.log(detalhado);
 	    	if (coin == "detalhes") {
-	    		coin = "favorito_"+detalhado;
+	    		coin = detalhado;
 	    	}
 	    	if (dados_favoritos.includes("favorito_"+coin)){
 
@@ -513,8 +516,18 @@ function detalhes(moeda){
 		if (moeda == result.id) {
 
 			$(".detalhes_name").html(result.name);
-			$(".favorito").attr('detalhado',"favorito_"+result.id);
-			$(".favorito").attr('id',"favorito_detalhes");
+			$(".favorito_detalhes").attr('detalhado',"favorito_"+result.id);
+    		$(".favorito_detalhes").attr('id',"favorito_detalhes");
+		    
+		    if (dados_favoritos.includes("favorito_"+result.id)){
+	    		$("#favorito_detalhes").attr('src', 'assets/img/estrela_favorito.png');
+	    		$("#favorito_"+moeda).attr('src', 'assets/img/estrela_favorito.png');
+	    	}else{
+	    		$("#favorito_detalhes").attr('src', 'assets/img/estrela_nao_favorito.png');
+	    		$("#favorito_"+moeda).attr('src', 'assets/img/estrela_nao_favorito.png');
+
+    		}			
+
 			$(".detalhes_image").attr('src',result.image);
 			$(".detalhes_symbol").html(result.symbol);
 			$(".detalhes_price").html(result.current_price);
