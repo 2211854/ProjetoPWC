@@ -4,9 +4,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="assets/img/logo.png" type="image/icon type">
-	<!-- importação da biblioteca jquery-->
+	<!-- importação da biblioteca jquery (JS)-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
+	<!-- importação da biblioteca popper(JS) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.2/umd/popper.min.js" integrity="sha512-aDciVjp+txtxTJWsp8aRwttA0vR2sJMk/73ZT7ExuEHv7I5E6iyyobpFOlEFkq59mWW8ToYGuVZFnwhwIUisKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
 	<!-- importação da biblioteca boostrap (JS) -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
@@ -15,13 +17,14 @@
 	
 	<!-- importação do ficheiro styles.css -->
 	<link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+	<!-- Importação de uma biblioteca externa de css -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	
-
 	<!-- titulo do separador -->
-	<title id="titulo">Projeto Coin Gecko | pagina-inicial</title>
-
+	<title id="tituloSeparador">Projeto Coin Gecko | pagina-inicial</title>
 </head>
 <body class="bg-light">
+
  	<!-- Bootstrap barra de navegação -->
  	 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <a class="navbar-brand" href="./index.html">
@@ -31,12 +34,12 @@
 
 	  <ul class="navbar-nav mr-auto">
 	    <li class="nav-item">
-	      <a class="nav-link active" href="#pagina-inicial">
+	      <a class="nav-link active rounded" href="#pagina-inicial">
 	      	Página Inicial
 	      </a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="#favoritos">Favoritos</a>
+	      <a class="nav-link rounded" href="#favoritos">Favoritos</a>
 	    </li>
 	  </ul>
 
@@ -45,38 +48,138 @@
 
 
 	 <!-- Conteudo inicial -->
+	 <!-- Modal -->
+	  <div class="modal fade" id="detalhesMoeda" role="dialog">
+	    <div class="modal-dialog modal-dialog-centered modal-lg">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Detalhes da Moeda: <u class="detalhes_name">Bitcoin</u> <span class="text-muted detalhes_symbol">BTC</span> <img class="favorito"  style="height: 25px;" src="assets/img/estrela_favorito.png"></h4>
+	        </div>
+	        <div class="modal-body">
+				<div class="rows">
+					<div class="row">
+						<div class="col h2 d-flex justify-content-center">
+	        				<img class="rounded w-25 d-flex justify-content-center detalhes_image"  src="assets/img/logo_preto_sem_fundo.png">
+	        			</div>
+					</div>
+					<div class="row">
+						<div class="col h2 d-flex justify-content-center">
+	        				<span  class="detalhes_price" >213232 €</span>
+	        			</div>
+					</div>
+					<div class="row">
+						<div class="col d-flex justify-content-center">
+	        				<span class="h-25 text-muted">1.0000 <span class="detalhes_symbol">BTC</span></span>
+	        			</div>
+					</div>
+					<div class="row ">
+						<div class="col h4 d-flex justify-content-center">24h</div>
+						<div class="col h4 d-flex justify-content-center">7d</div>
+					</div>
+					<div class="row ">
+						<div class="col d-flex justify-content-center detalhes_24h">1.4%</div>
+						<div class="col d-flex justify-content-center detalhes_7d" >1.2%</div>
+					</div>
+					<div class="row">
+						<div class="col"><span class="text-muted">Market Cap:</span><span class="float-right detalhes_marketcap">32422442 €</span></div>
+						<div class="col"><span class="text-muted">Circulating Supply:</span><span class="float-right detalhes_circulating_supply">18,945,243</span></div>
+					</div>
+					<div class="row">
+						<div class="col"><span class="text-muted">Fully Diluted Valuation:</span><span class="float-right detalhes_full_diluted">€719,093,907,000</span></div>
+						<div class="col"><span class="text-muted">Total Supply:</span><span class="float-right detalhes_total_supply">21,000,000</span></div>
+					</div>
+					<div class="row">
+						<div class="col"><span class="text-muted">High 24h:</span><span class="float-right detalhes_high_24h">€16,000,482,526</span></div>
+						<div class="col"><span class="text-muted">Max Supply:</span><span class="float-right detalhes_total_max_supply">21,000,000</span></div>
+					</div>
+				</div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+
  	 <!-- Dados das Moedas -->
 	  <div class="container" id="dados_moedas">
-	 	<div class="row">
-	 		<div class="col">
-	 			<h1>Moedas</h1>
-	 		</div>
-	 		<div class="col-0">
-		 		 <!-- Barra de procura -->
-	 			<form class="form-inline" onclick="return false;" action="/">
-		  			<input id="barra_procura" class="form-control" type="text" placeholder="Procurar">
-		 		 </form>
-	 		</div>
-		 
-	 	</div>
 
- 	 	<table class="table table-hover">
- 	 		<tr>
- 	 			<th id='header_rank'><a href="#" onclick="return false;" class="text-dark text-decoration-none"># <span id="ordem">▼</span></a></th>
- 	 			<th >Logo</th>
- 	 			<th id='header_nome'>Nome</th>
- 	 			<th id='header_preco'>Preço (€)</th>
- 	 			<th id='header_24h'>24h</th>
- 	 			<th id='header_7d'>7d</th>
- 	 		</tr>
- 		    <tr class = "dadosMoeda">
-            	<td class ="market_cap_rank"></td>
-            	<td class ="image"><img class="rounded-circle" id="logo_moeda" src="assets/img/logo_preto_sem_fundo.png"></td>
-            	<td class ="name"></td>
-            	<td class ="current_price"></td>
-            	<td class ="price_change_percentage_24h_in_currency"></td>
-            	<td class ="price_change_percentage_7d_in_currency"></td>
-           </tr>
+
+	  	<div class="rows">
+	  		<div class="row">
+		 		<div class="col display-1">
+
+		 			<span id="tituloPrincipal">Moedas</span>
+		 		</div>
+		 	</div>
+		 	<div class="row mb-2">
+		 		<div class="col">
+	 				<div class="panel-group">
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+					      <h4 class="panel-title">
+					        <button data-toggle="collapse" class="btn btn-primary" href="#filtros">Filtros
+					        	<i class="fas fa-bars"></i>
+					        </button>
+					      </h4>
+					    </div>
+					    <div id="filtros" class="panel-collapse collapse in">
+					      <div class="panel-body">
+				 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							  <label id="botao100" class="btn btn-info active">
+							    <input type="radio" name="top" id="top100" autocomplete="off" checked>100
+							  </label>
+							  <label id="botao10" class="btn btn-info">
+							    <input type="radio" name="top" id="top10" autocomplete="off">10
+							  </label>
+							</div>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							  	<label id="botaoEUR" class="btn btn-success active">
+							    <input type="radio" name="valorizacao" id="valorEUR" autocomplete="off" checked>€
+							  </label>
+							  <label id="botaoUSD" class="btn btn-success">
+							    <input type="radio" name="valorizacao" id="valorUSD" autocomplete="off">$
+							  </label>
+							</div>
+					      	
+					      </div>
+					    </div>
+					  </div>
+					</div>
+		 		</div>
+		 		<div class="col-0">
+			 		 <!-- Barra de procura -->
+		 			<form class="form-inline" onclick="return false;" action="/">
+			  			<input id="barra_procura" class="form-control" type="text" placeholder="Procurar">
+			 		 </form>
+		 		</div>
+	 		</div>
+		 </div>
+ 	 	<table class="table">
+ 	 		<thead>
+	 	 		<tr>
+	 	 			<th id='header_rank'><a href="#" onclick="return false;" class="text-dark text-decoration-none"># <span id="ordem">▲</span></a></th>
+	 	 			<th >Logo</th>
+	 	 			<th id='header_nome'><a href="#" onclick="return false;" class="text-dark text-decoration-none">Nome </a></th>
+	 	 			<th id='header_preco'><a href="#" onclick="return false;" class="text-dark text-decoration-none">Preço </a></th>
+	 	 			<th id='header_24h'><a href="#" onclick="return false;" class="text-dark text-decoration-none">24h </a></th>
+	 	 			<th id='header_7d'><a href="#" onclick="return false;" class="text-dark text-decoration-none">7d </a></th>
+	 	 		</tr>
+ 	 		</thead>
+ 	 		<tbody class=" table-striped">
+	 		    <tr class="dadosMoeda">
+	            	<td class ="market_cap_rank"></td>
+	            	<td class ="image"><img class="rounded-circle" id="logo_moeda" src="assets/img/logo_preto_sem_fundo.png"></td>
+	            	<td class ="name"></td>
+	            	<td class ="current_price"></td>
+	            	<td class ="price_change_percentage_24h_in_currency"></td>
+	            	<td class ="price_change_percentage_7d_in_currency"></td>
+	           </tr>
+      	   </tbody>
  	 	</table>
  	 </div>
 
@@ -86,54 +189,16 @@
 	      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
 	        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
 	      </a>
-	      <span class="text-muted">© 2022 Projeto CoinGecko - <a href="https://www.ipleiria.pt" class="text-muted"> IPLeiria <a/></span>
+	      <span class="text-muted">© 2022 Projeto Coin Gecko - <a href="https://www.ipleiria.pt" target="_blank" class="text-muted"> IPLeiria <a/></span>
 	    </div>
 
-	    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-	      <li class="ms-3">Gilberto Carvalho (2211878)</li>
-	      <li class="ms-3">José Duarte (2211853)</li><br>
-	      <li class="ms-3">Márcio Valério (2211854)</li>
+	    <ul class="rows text-muted">
+	      <li class="row">Gilberto Carvalho (2211878)</li>
+	      <li class="row">José Duarte (2211853)</li>
+	      <li class="row">Márcio Valério (2211854)</li>
 	    </ul>
 	  </footer>
-	</div>
-
-	<div class="popup-details" id="popupid">
-		<div class="overlay-details"></div>
-		<div class="content-details">
-			<img class="rounded-circle" id="logo_moeda" src="assets/img/logo_preto_sem_fundo.png">
-			<h1>Detalhes da Moeda:</h1>
-			<table class="table-details">
-  				<tr>
-  				  <th id='header_capital'>Capitalização do mercado</th>
-   			      <td class ="market_capital"></td>
- 			   </tr>
-               <tr>
-                  <th id='header_negocio'>Volume de negociação(24h)</th>
-                  <td class =trading_volume_24h></td>
-               </tr>
-               <tr>
-                 <th id='header_avaliacao'>Avaliação totalmente diluída</th>
-                 <td class ="fully_diluted_valuation"></td>
-              </tr>
-              <tr>
-                 <th id='header_circulante'>Fornecimento circulante</th>
-                 <td class ="circulating_supply"></td>
-              </tr>
-              <tr>
-                 <th id='header_total'>Fornecimento total</th>
-                 <td class ="total_supply"></td>
-              </tr>
-              <tr>
-                 <th id='header_maximo'>Fornecimento máximo</th>
-                 <td class ="maximum_supply"></td>
-              </tr>
-           </table>
-		</div>
-	</div>
-	
-	<!-- importação do ficheiro scripts.js -->
+	</div>	<!-- importação do ficheiro scripts.js -->
 	<script type="text/javascript" src="./assets/js/scripts.js"></script>
-
-	
-</body>
+	</body>
 </html>

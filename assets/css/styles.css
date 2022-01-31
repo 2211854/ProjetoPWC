@@ -1,4 +1,6 @@
+
 /* adição de um estilo ao css já existente do bootstrap */
+
 .active {
 	background-color: gray;
 }
@@ -20,18 +22,7 @@
 	height: 20px;
 }
 
-#fundo_preto{
-	background-color: black;
-}
-
-#detalhesMoeda{
-	z-index: 99;
-}  
 
 .favorito{
 	height: 17px;
-}
-
-#popupid{
-	text-align: center;
 }
