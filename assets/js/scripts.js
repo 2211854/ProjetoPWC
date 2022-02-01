@@ -435,6 +435,10 @@ $(document).ready( function(){
 
 	    	if (coin == "detalhes") {
 	    		coin = detalhado;
+
+	    		$("#favorito_"+coin).attr('src', 'assets/img/estrela_favorito.png');
+
+	    		$("#favorito_"+coin).attr('src', 'assets/img/estrela_nao_favorito.png');
 	    	}
 	    	if (dados_favoritos.includes("favorito_"+coin)){
 
@@ -443,11 +447,11 @@ $(document).ready( function(){
 	    		}else{
 	    			dados_favoritos.splice(dados_favoritos.indexOf("favorito_"+coin),dados_favoritos.indexOf("favorito_"+coin));
 	    		}
-	    		$(this).attr('src', 'assets/img/estrela_nao_favorito.png');
+	    		$("#favorito_"+coin).attr('src', 'assets/img/estrela_nao_favorito.png');
 	    		localStorage.setItem("dados_favoritos", JSON.stringify(dados_favoritos));
 	    	}else{
 	    		dados_favoritos.push("favorito_"+coin);
-	    		$(this).attr('src', 'assets/img/estrela_favorito.png');
+	    		$("#favorito_"+coin).attr('src', 'assets/img/estrela_favorito.png');
 	    		localStorage.setItem("dados_favoritos", JSON.stringify(dados_favoritos));
 	    	}
 
