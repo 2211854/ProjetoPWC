@@ -71,7 +71,6 @@ $(document).ready( function(){
 		}else{
 			$("#botaoUSD").removeClass("active");
 		}
-		detalhes(detalhado);
 
 	},100)
 
@@ -179,6 +178,7 @@ $(document).ready( function(){
 			};
 			dados_originais_tabela = duplicarArray(res);
 			atualizarDadosTabela(dados_originais_tabela);
+			detalhes(detalhado);
 		})
 	}
 
@@ -418,13 +418,11 @@ $(document).ready( function(){
 		$('#dados_moedas').fadeIn(500);
 	});
 
-
+	/* responsavel por gravar o os favoritos */ 
 	$("body").on('click','img', function(){
 	    if($(this).attr('id').includes('favorito_')){
 	    	var coin = $(this).attr('id').substring(9,$(this).attr('id').length);
 
-	    	console.log(coin);
-	    	console.log(detalhado);
 	    	if (coin == "detalhes") {
 	    		coin = detalhado;
 	    	}
@@ -446,9 +444,17 @@ $(document).ready( function(){
     	}
 	});
 
-	$("table").on('mouseout','img', function(){
+
+	/* responsavel para quando o mouse é colocado em cima da estrela do favorito mude a imagem */ 
+	$("body").on('mouseout','img', function(){
 	    if($(this).attr('id').includes('favorito_')){
-	    	if (dados_favoritos.includes($(this).attr('id'))){
+
+	    	var coin = $(this).attr('id').substring(9,$(this).attr('id').length);
+
+	    	if (coin == "detalhes") {
+	    		coin = detalhado;
+	    	}
+	    	if (dados_favoritos.includes("favorito_"+coin)){
 	    		$(this).attr('src', 'assets/img/estrela_favorito.png');
 	    	}else{
 	    		$(this).attr('src', 'assets/img/estrela_nao_favorito.png');
@@ -456,12 +462,13 @@ $(document).ready( function(){
     	}	
 	});
 
-	$("table").on('mouseover','img', function(){
+	/* responsavel para quando o mouse é colocado em cima da estrela do favorito mude a imagem */ 
+	$("body").on('mouseover','img', function(){
 		if($(this).attr('id').includes('favorito_')){
 	    	$(this).attr('src', 'assets/img/estrela_hover.png');
 	    }
 	});
-	
+	/* botões dos filtros que permitem mudar a varlorização das moedas (eur ou usd) */ 
 	$("#valorEUR").on('change',function(){
 		valorizacao="eur";
 		receberDadosAPI("eur",ranking_maximo);
@@ -471,6 +478,7 @@ $(document).ready( function(){
 		receberDadosAPI("usd",ranking_maximo);
 	} )
 
+	/* botões dos filtros que permitem mudar a quantidade de valores que pretendem quer apareça */ 
 	$("#top100").on('change',function(){
 
 		ranking_maximo = 100;
@@ -509,10 +517,11 @@ detalhes_total_max_supply
 });
 
 
+
+// função responsável atualizar a página dos detalhes com os detalhes da moeda pretendida
 function detalhes(moeda){
 	detalhado = moeda;
-	console.log(dados_atuais_tabela);
-	$.each(dados_atuais_tabela, function(index, result){
+	$.each(dados_originais_tabela, function(index, result){
 		if (moeda == result.id) {
 
 			$(".detalhes_name").html(result.name);
@@ -530,17 +539,19 @@ function detalhes(moeda){
 
 			$(".detalhes_image").attr('src',result.image);
 			$(".detalhes_symbol").html(result.symbol);
-			$(".detalhes_price").html(result.current_price);
-			$(".detalhes_24h").html(result.price_change_percentage_24h_in_currency);
-			$(".detalhes_7d").html(result.price_change_percentage_7d_in_currency);
-			$(".detalhes_marketcap").html(result.market_cap);
+			$(".detalhes_price").html(result.current_price+" "+valorizacao);
+			$(".detalhes_24h").html(result.price_change_percentage_24h_in_currency.toFixed(3)+" %");
+			$(".detalhes_7d").html(result.price_change_percentage_7d_in_currency.toFixed(3)+" %");
+			if(result.market_cap == null){result.market_cap = "∞"};
+
+			$(".detalhes_marketcap").html(result.market_cap +" "+valorizacao);
 			if(result.circulating_supply == null){result.circulating_supply = "∞"}
-			$(".detalhes_circulating_supply").html(result.circulating_supply);
+			$(".detalhes_circulating_supply").html(result.circulating_supply+" "+valorizacao);
 			if(result.fully_diluted_valuation == null){result.fully_diluted_valuation = "∞"};
-			$(".detalhes_full_diluted").html(result.fully_diluted_valuation);
-			$(".detalhes_total_supply").html(result.total_supply);
-			$(".detalhes_high_24h").html(result.high_24h);
-			$(".detalhes_total_max_supply").html(result.name);
+			$(".detalhes_full_diluted").html(result.fully_diluted_valuation+" "+valorizacao);
+			$(".detalhes_total_supply").html(result.total_supply+" "+valorizacao);
+			$(".detalhes_high_24h").html(result.high_24h+" "+valorizacao);
+			$(".detalhes_total_max_supply").html(result.max_supply+" "+valorizacao);
 
 			return false;
 		}
