@@ -19,7 +19,7 @@ function duplicarArray(arrayOriginal){
 
 	//variavel com os dados originais da tabela
 	var dados_originais_tabela = [];
-
+	//variavel com os dados dos favoritos
 	var dados_favoritos = JSON.parse(localStorage.getItem("dados_favoritos") || "[]");
 
 	var dados_atuais_tabela = [];
@@ -38,12 +38,12 @@ $(document).ready( function(){
 	
 	
 	
-	// temporizador para receber e atualizar os dados da api a cada minuto
+	// temporizador para receber e atualizar os dados da api a cada 15 segundos
 	let temporizador = setInterval(function(){
 		receberDadosAPI(valorizacao,ranking_maximo);
 		dados_favoritos = JSON.parse(localStorage.getItem("dados_favoritos") || "[]");
 	}, 15000);
-
+	// temporizador para atualizar os css rapidamente
 	let temporizador_zero = setInterval(function(){
 
 		if ($("#top100").is(':checked')) {
@@ -77,10 +77,8 @@ $(document).ready( function(){
 	//fazer com que ao carregar a página dar load nos dados
 	$("tbody").on('load', receberDadosAPI(valorizacao,ranking_maximo));
 
-
 	function atualizarDadosTabela(dados)
 	{
-			//if (dados.length <100) {console.log("alerta")};
 	
 		$.each(dados, function(index, result){
 
@@ -169,7 +167,6 @@ $(document).ready( function(){
 			method: "GET",
 			url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency="+currency+"&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d"
 		}).done(function(res){
-			console.log(res);
 
 			if(dados_originais_tabela.length == 0){ 
 				recriarDadosTabela(res);
@@ -187,7 +184,7 @@ $(document).ready( function(){
 		var dados = duplicarArray(dados_atuais_tabela);
 		var dados_auxiliar = duplicarArray(dados_atuais_tabela);
 
-
+		//definir a ordem
 		if(ordem_atual == "▲")
 		{
 			ordem_atual ="desc";
@@ -200,6 +197,7 @@ $(document).ready( function(){
 		}
 
 		switch(categoria) {
+		//organizar por market_cap
 		  case 'rank':
 		  	var lista_ranks = [];
 
@@ -214,6 +212,7 @@ $(document).ready( function(){
 		   	}
 
 		  break;
+		  //organizar por nome
 		  case 'nome':
 		  	var lista_nomes = [];
 
@@ -228,7 +227,7 @@ $(document).ready( function(){
 		   	}
 
 		   	break;
-
+		   //organizar por preço
 		  case 'preco':
 		  	var lista_precos = [];
 
@@ -243,7 +242,7 @@ $(document).ready( function(){
 		   	}
 
 		   	break;
-
+		  //organizar por mudanças nas ultimas 24h
 		  case '24h':
 
 		  	var lista_24h = [];
@@ -259,6 +258,7 @@ $(document).ready( function(){
 		   	}
 
 		   	break;
+		  //organizar por mudanças nos ultimos 7d
 		  case '7d':
 		  	var lista_7d = [];
 
@@ -292,6 +292,11 @@ $(document).ready( function(){
 	    });
 	  });
 /*
+	estas funçoes fizemos manualmente para fazer a procura mas depois descobrimos a existencia do prototype.filter() e decidimos fazer com esse pois é mais simmples 
+	
+
+
+
 	$("#barra_procura").on('focusin', function(e){
 
 		$(this).on('keyup', function(){
@@ -336,7 +341,7 @@ $(document).ready( function(){
 		});
 	}
 */
-
+	//acionar a ordem por rank
 	$("#header_rank").on('click', function (){
 		var texto = $(this).text();
 		if(texto.indexOf("▲") == -1 && texto.indexOf("▼") == -1){
@@ -348,6 +353,7 @@ $(document).ready( function(){
 		organizarDados('rank');
 	});
 	
+	//acionar a ordem por nome
 	$("#header_nome").on('click', function (){
 		var texto = $(this).text();
 		if(texto.indexOf("▼") == -1 && texto.indexOf("▲") == -1){
@@ -359,6 +365,7 @@ $(document).ready( function(){
 		organizarDados('nome');
 	});
 
+	//acionar a ordem por preço
 	$("#header_preco a").on('click', function (){
 		var texto = $(this).text();
 		if(texto.indexOf("▼") == -1 && texto.indexOf("▲") == -1){
@@ -370,6 +377,7 @@ $(document).ready( function(){
 		organizarDados('preco');
 	});
 
+	//acionar a ordem por mudança 24h
 	$("#header_24h").on('click', function (){
 		var texto = $(this).text();
 		if(texto.indexOf("▼") == -1 && texto.indexOf("▲") == -1){
@@ -381,6 +389,7 @@ $(document).ready( function(){
 		organizarDados('24h');
 	});		
 
+	//acionar a ordem por mudança 7d
 	$("#header_7d").on('click', function (){
 		var texto = $(this).text();
 		if(texto.indexOf("▼") == -1 && texto.indexOf("▲") == -1){
@@ -394,6 +403,7 @@ $(document).ready( function(){
 	});
 
 
+	//serve para alterar entre o separador dos favoritos e a pagina inicial
 	$(".nav-link").on('click', function(e){ 
 
 		$(".active").removeClass('active');
@@ -492,28 +502,10 @@ $(document).ready( function(){
 		recriarDadosTabela(dados_atuais_tabela);
 	})
 
-	$("[data-toggle='modal']").on('click', function(e){
-		console.log($(this));
-	})
-
 
 
 
 	
-/*
-detalhes_name
-detalhes_symbol
-detalhes_price
-detalhes_symbol
-detalhes_24h
-detalhes_7d
-detalhes_marketcap
-detalhes_circulating_supply
-detalhes_full_diluted
-detalhes_total_supply
-detalhes_total_24h
-detalhes_total_max_supply
-*/
 });
 
 
@@ -521,7 +513,9 @@ detalhes_total_max_supply
 // função responsável atualizar a página dos detalhes com os detalhes da moeda pretendida
 function detalhes(moeda){
 	detalhado = moeda;
+
 	$.each(dados_originais_tabela, function(index, result){
+
 		if (moeda == result.id) {
 
 			$(".detalhes_name").html(result.name);
