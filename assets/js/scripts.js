@@ -40,7 +40,7 @@ $(document).ready( function(){
 	
 	// temporizador para receber e atualizar os dados da api a cada 15 segundos
 	let temporizador = setInterval(function(){
-		receberDadosAPI(valorizacao,ranking_maximo);
+		receberDadosAPI(valorizacao);
 		dados_favoritos = JSON.parse(localStorage.getItem("dados_favoritos") || "[]");
 	}, 15000);
 	// temporizador para atualizar os css rapidamente
@@ -75,7 +75,7 @@ $(document).ready( function(){
 	},100)
 
 	//fazer com que ao carregar a página dar load nos dados
-	$("tbody").on('load', receberDadosAPI(valorizacao,ranking_maximo));
+	$("tbody").on('load', receberDadosAPI(valorizacao));
 
 	function atualizarDadosTabela(dados)
 	{
@@ -160,7 +160,7 @@ $(document).ready( function(){
 	}
 
 
-	function receberDadosAPI(currency,por_pagina){
+	function receberDadosAPI(currency){
 
 		//função para atualizar os dados da lista
 		$.ajax({
@@ -485,11 +485,11 @@ $(document).ready( function(){
 	/* botões dos filtros que permitem mudar a varlorização das moedas (eur ou usd) */ 
 	$("#valorEUR").on('change',function(){
 		valorizacao="eur";
-		receberDadosAPI("eur",ranking_maximo);
+		receberDadosAPI("eur");
 	} )
 	$("#valorUSD").on('change',function(){
 		valorizacao="usd";
-		receberDadosAPI("usd",ranking_maximo);
+		receberDadosAPI("usd");
 	} )
 
 	/* botões dos filtros que permitem mudar a quantidade de valores que pretendem quer apareça */ 
